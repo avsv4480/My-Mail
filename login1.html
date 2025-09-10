@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jarvis Multi-Step Login</title>
+  <link rel="stylesheet" href="login1.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+</head>
+<body>
+
+  <!-- Moving Stars Canvas -->
+  <canvas id="starsCanvas"></canvas>
+
+  <!-- Step 1: Basic Info -->
+  <div id="step1" class="step">
+    <h2>Step 1: Enter Your Details</h2>
+    <input type="text" id="firstName" placeholder="First Name" required />
+    <input type="text" id="lastName" placeholder="Last Name" required />
+    <input type="number" id="age" placeholder="Age" required />
+    <button onclick="nextStep('step2')">Next</button>
+  </div>
+
+  <!-- Step 2: Create Username -->
+  <div id="step2" class="step" style="display: none;">
+    <h2>Create Your Username</h2>
+    <input type="text" id="username" placeholder="Username" required />
+    <button onclick="showWelcome()">Next</button>
+  </div>
+
+  <!-- Step 3: Welcome Screen -->
+  <div id="welcomeScreen" class="step" style="display: none;">
+    <h2 id="welcomeMessage">Welcome</h2>
+    <button onclick="nextStep('step3')">Next</button>
+  </div>
+
+  <!-- Step 4: OTP Verification -->
+  <div id="step3" class="step" style="display: none;">
+    <h2>Choose Verification Method</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="text" id="phoneNumber" placeholder="Phone Number (+CountryCode)" />
+    <button onclick="verifyEmail()">Verify via Email</button>
+    <button onclick="verifyPhone()">Verify via Phone</button>
+    <div id="recaptcha-container"></div>
+  </div>
+
+  <!-- Step 5: Verified Screen -->
+  <div id="verifiedScreen" class="step" style="display: none;">
+    <h2>Verification Completed ✅</h2>
+    <p>You are successfully verified!</p>
+  </div>
+
+  <script src="login1.js"></script>
+  <script src="starslogin.js"></script>
+</body>
+</html>
